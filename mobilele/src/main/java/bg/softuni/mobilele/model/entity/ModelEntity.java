@@ -12,16 +12,16 @@ public class ModelEntity extends BaseEntity{
     @Column
     private CategoryEnum category;
 
-    @Column
+    @Column(nullable = false)
     private String imageUrl;
 
-    @Column
+    @Column(nullable = false)
     private Long startYear;
 
     @Column
     private Long endYear;
 
-    @OneToOne
+    @ManyToOne
     private BrandEntity brand;
 
     public CategoryEnum getCategory() {
@@ -67,5 +67,16 @@ public class ModelEntity extends BaseEntity{
     public ModelEntity setBrand(BrandEntity brand) {
         this.brand = brand;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ModelEntity{" +
+                "category=" + category +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                ", brand=" + (brand != null ? brand.getName() : null) +
+                '}';
     }
 }
