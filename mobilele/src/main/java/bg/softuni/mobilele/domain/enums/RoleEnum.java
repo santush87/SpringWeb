@@ -1,4 +1,4 @@
-package bg.softuni.mobilele.model.enums;
+package bg.softuni.mobilele.domain.enums;
 
 public enum RoleEnum {
     USER,

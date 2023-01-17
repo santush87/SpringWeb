@@ -1,4 +1,4 @@
-package bg.softuni.mobilele.model.entities;
+package bg.softuni.mobilele.domain.entities;
 
 import javax.persistence.*;
 import java.util.Date;

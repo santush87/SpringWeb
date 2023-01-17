@@ -1,6 +1,6 @@
-package bg.softuni.mobilele.model.entities;
+package bg.softuni.mobilele.domain.entities;
 
-import bg.softuni.mobilele.model.enums.ModelCategoryEnum;
+import bg.softuni.mobilele.domain.enums.ModelCategoryEnum;
 
 import javax.persistence.*;
 import java.util.Date;
