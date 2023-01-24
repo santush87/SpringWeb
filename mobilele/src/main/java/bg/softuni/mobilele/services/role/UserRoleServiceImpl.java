@@ -33,4 +33,6 @@ public class UserRoleServiceImpl implements UserRoleService, DataBaseInitService
     public boolean isDbInit() {
         return this.roleRepository.count() > 0;
     }
+
+//    public List<UserRoleViewModel>
 }
