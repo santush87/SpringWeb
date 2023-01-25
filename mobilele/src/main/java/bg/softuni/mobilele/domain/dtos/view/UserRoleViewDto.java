@@ -4,13 +4,13 @@ import bg.softuni.mobilele.domain.enums.RoleEnum;
 
 public class UserRoleViewDto {
 
-    private RoleEnum role;
+    private String role;
 
-    public RoleEnum getRole() {
+    public String getRole() {
         return role;
     }
 
-    public UserRoleViewDto setRole(RoleEnum role) {
+    public UserRoleViewDto setRole(String role) {
         this.role = role;
         return this;
     }

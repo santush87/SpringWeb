@@ -5,7 +5,6 @@ import bg.softuni.mobilele.domain.dtos.view.UserRoleViewDto;
 import bg.softuni.mobilele.domain.entities.UserRole;
 import bg.softuni.mobilele.domain.enums.RoleEnum;
 import bg.softuni.mobilele.repositories.UserRoleRepository;
-import bg.softuni.mobilele.services.init.DataBaseInitService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,24 +14,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserRoleServiceImpl implements UserRoleService, DataBaseInitService {
+public class UserRoleServiceImpl implements UserRoleService {
 
     private final UserRoleRepository roleRepository;
     private final ModelMapper modelMapper;
+
     @Autowired
     public UserRoleServiceImpl(UserRoleRepository roleRepository, ModelMapper modelMapper) {
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
+        this.dbInit();
     }
 
     @Override
     public void dbInit() {
-        List<UserRole> roles = new ArrayList<>();
+        if (!isDbInit()) {
+            List<UserRole> roles = new ArrayList<>();
 
-        roles.add(new UserRole().setRole(RoleEnum.USER));
-        roles.add(new UserRole().setRole(RoleEnum.ADMIN));
+            roles.add(new UserRole().setRole(RoleEnum.USER));
+            roles.add(new UserRole().setRole(RoleEnum.ADMIN));
 
-        this.roleRepository.saveAllAndFlush(roles);
+            this.roleRepository.saveAllAndFlush(roles);
+        }
     }
 
     @Override
