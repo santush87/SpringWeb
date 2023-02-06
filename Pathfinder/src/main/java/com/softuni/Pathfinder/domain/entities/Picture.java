@@ -1,7 +1,6 @@
 package com.softuni.Pathfinder.domain.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.ToOne;
 
 @Entity
 @Table(name = "pictures")

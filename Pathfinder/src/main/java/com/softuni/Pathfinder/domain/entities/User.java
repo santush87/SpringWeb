@@ -20,6 +20,12 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Level level;
 
+    @Column
+    private String fullname;
+
+    @Column
+    private Integer age;
+
     public User() {
     }
 
@@ -66,5 +72,13 @@ public class User extends BaseEntity {
     public User setLevel(Level level) {
         this.level = level;
         return this;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public Integer getAge() {
+        return age;
     }
 }
