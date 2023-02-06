@@ -34,6 +34,7 @@ public class Route extends BaseEntity {
 
     @OneToMany(targetEntity = Picture.class,
             mappedBy = "route",
+            fetch = FetchType.EAGER,
             cascade = {CascadeType.MERGE, CascadeType.DETACH})
     private Set<Picture> pictures;
 
