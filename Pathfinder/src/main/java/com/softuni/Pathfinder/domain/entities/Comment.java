@@ -22,8 +22,8 @@ public class Comment extends BaseEntity {
     @ManyToOne
     private User author;
 
-//    @ManyToOne
-//    private Route route;
+    @ManyToOne
+    private Route route;
 
     public Comment() {
     }
@@ -61,6 +61,15 @@ public class Comment extends BaseEntity {
 
     public Comment setAuthor(User author) {
         this.author = author;
+        return this;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public Comment setRoute(Route route) {
+        this.route = route;
         return this;
     }
 }
