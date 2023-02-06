@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "routes")
 public class Route extends BaseEntity {
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String gpxCoordinates;
 
     @Enumerated(EnumType.STRING)

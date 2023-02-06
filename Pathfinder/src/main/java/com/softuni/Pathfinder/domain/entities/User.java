@@ -13,15 +13,15 @@ public class User extends BaseEntity {
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> role;
+    private Set<Role> roles;
     @Enumerated(EnumType.STRING)
     private Level level;
 
     @Column
-    private String fullname;
+    private String fullName;
 
     @Column
     private Integer age;
@@ -33,8 +33,8 @@ public class User extends BaseEntity {
         return username;
     }
 
-    public User setUsername(String username) {
-        this.username = username;
+    public User setUsername(String userName) {
+        this.username = userName;
         return this;
     }
 
@@ -56,12 +56,12 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public User setRole(Set<Role> role) {
-        this.role = role;
+    public User setRoles(Set<Role> role) {
+        this.roles = role;
         return this;
     }
 
@@ -74,8 +74,8 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
     public Integer getAge() {
