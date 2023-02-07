@@ -31,7 +31,12 @@ public class StateController extends BaseController {
     }
 
     @GetMapping("/login")
-    public ModelAndView getLogin() {
-        return super.view("demo/login");
+    public ModelAndView getLogin(ModelAndView modelAndView,
+                                 @CookieValue(name = STATE_USERNAME_KEY,
+                                 defaultValue = "") String username) {
+
+        modelAndView.addObject(STATE_USERNAME_KEY, username);
+
+        return super.view("demo/login", modelAndView);
     }
 }
