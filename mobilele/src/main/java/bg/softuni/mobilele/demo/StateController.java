@@ -14,4 +14,9 @@ public class StateController extends BaseController {
     public ModelAndView getRegister(){
         return super.view("demo/register");
     }
+
+    @GetMapping("/login")
+    public ModelAndView getLogin(){
+        return super.view("demo/login");
+    }
 }
