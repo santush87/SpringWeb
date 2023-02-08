@@ -1,5 +1,6 @@
 package bg.softuni.mobilele.config;
 
+import bg.softuni.mobilele.domain.beans.LoggedUser;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
@@ -24,5 +25,10 @@ public class BeanConfiguration {
             }
         });
         return mapper;
+    }
+
+    @Bean
+    public LoggedUser loggedUser(){
+        return new LoggedUser();
     }
 }
