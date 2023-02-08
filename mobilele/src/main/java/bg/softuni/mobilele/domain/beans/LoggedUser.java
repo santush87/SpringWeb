@@ -10,7 +10,7 @@ public class LoggedUser {
 
     private String username;
 
-    private List<UserRoleModel> roleModel;
+    private List<UserRoleModel> roleModels;
 
     public LoggedUser() {
     }
@@ -33,12 +33,12 @@ public class LoggedUser {
         return username;
     }
 
-    public List<UserRoleModel> getRoleModel() {
-        return roleModel;
+    public List<UserRoleModel> getRoleModels() {
+        return roleModels;
     }
 
-    public LoggedUser setRoleModel(List<UserRoleModel> roleModel) {
-        this.roleModel = roleModel;
+    public LoggedUser setRoleModels(List<UserRoleModel> roleModels) {
+        this.roleModels = roleModels;
         return this;
     }
 }
