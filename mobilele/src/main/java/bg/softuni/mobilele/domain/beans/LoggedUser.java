@@ -7,12 +7,15 @@ import java.util.List;
 public class LoggedUser {
 
     private String id;
-
     private String username;
-
     private List<UserRoleModel> roleModels;
 
+
     public LoggedUser() {
+    }
+
+    public String getId() {
+        return id;
     }
 
     public LoggedUser setId(String id) {
@@ -20,17 +23,13 @@ public class LoggedUser {
         return this;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public LoggedUser setUsername(String username) {
         this.username = username;
         return this;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public List<UserRoleModel> getRoleModels() {
@@ -40,5 +39,11 @@ public class LoggedUser {
     public LoggedUser setRoleModels(List<UserRoleModel> roleModels) {
         this.roleModels = roleModels;
         return this;
+    }
+
+    public void clearFields() {
+        this.id = null;
+        this.username = null;
+        this.roleModels = null;
     }
 }

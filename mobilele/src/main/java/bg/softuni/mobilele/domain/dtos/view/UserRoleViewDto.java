@@ -1,7 +1,5 @@
 package bg.softuni.mobilele.domain.dtos.view;
 
-import bg.softuni.mobilele.domain.enums.RoleEnum;
-
 public class UserRoleViewDto {
 
     private String role;
