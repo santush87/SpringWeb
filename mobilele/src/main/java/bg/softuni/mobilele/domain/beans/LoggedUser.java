@@ -2,13 +2,15 @@ package bg.softuni.mobilele.domain.beans;
 
 import bg.softuni.mobilele.domain.dtos.model.UserRoleModel;
 
+import java.util.List;
+
 public class LoggedUser {
 
     private String id;
 
     private String username;
 
-    private UserRoleModel roleModel;
+    private List<UserRoleModel> roleModel;
 
     public LoggedUser() {
     }
@@ -23,11 +25,6 @@ public class LoggedUser {
         return this;
     }
 
-    public LoggedUser setRoleModel(UserRoleModel roleModel) {
-        this.roleModel = roleModel;
-        return this;
-    }
-
     public String getId() {
         return id;
     }
@@ -36,7 +33,12 @@ public class LoggedUser {
         return username;
     }
 
-    public UserRoleModel getRoleModel() {
+    public List<UserRoleModel> getRoleModel() {
         return roleModel;
+    }
+
+    public LoggedUser setRoleModel(List<UserRoleModel> roleModel) {
+        this.roleModel = roleModel;
+        return this;
     }
 }
