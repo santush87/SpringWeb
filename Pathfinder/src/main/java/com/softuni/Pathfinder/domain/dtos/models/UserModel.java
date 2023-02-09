@@ -90,4 +90,8 @@ public class UserModel {
         this.age = age;
         return this;
     }
+
+    public boolean isValid() {
+        return this.id != null;
+    }
 }
