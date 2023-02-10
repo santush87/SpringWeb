@@ -15,7 +15,7 @@ public class User extends BaseEntity {
     private String password;
     @Column
     private String email;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Role> roles;
     @Enumerated(EnumType.STRING)
     private Level level;
