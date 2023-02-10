@@ -44,8 +44,8 @@ public class AuthController extends BaseController{
 
     }
 
-    @PostMapping("/logout")
-    public ModelAndView postLogout(){
+    @GetMapping("/logout")
+    public ModelAndView getLogout(){
         this.userService.logout();
 
         return super.redirect("/");
