@@ -1,4 +1,4 @@
-package com.softuni.Pathfinder.domain.dtos.banding;
+package com.softuni.Pathfinder.domain.dtos.binding;
 
 public class UserLoginForm {
 

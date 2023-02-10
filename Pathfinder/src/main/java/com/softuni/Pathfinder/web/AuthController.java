@@ -1,7 +1,7 @@
 package com.softuni.Pathfinder.web;
 
-import com.softuni.Pathfinder.domain.dtos.banding.UserLoginForm;
-import com.softuni.Pathfinder.domain.dtos.banding.UserRegisterForm;
+import com.softuni.Pathfinder.domain.dtos.binding.UserLoginForm;
+import com.softuni.Pathfinder.domain.dtos.binding.UserRegisterForm;
 import com.softuni.Pathfinder.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
