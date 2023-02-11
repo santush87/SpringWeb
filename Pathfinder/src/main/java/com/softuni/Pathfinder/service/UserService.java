@@ -6,6 +6,7 @@ import com.softuni.Pathfinder.domain.dtos.binding.UserRegisterForm;
 import com.softuni.Pathfinder.domain.dtos.models.UserModel;
 import com.softuni.Pathfinder.domain.entities.Role;
 import com.softuni.Pathfinder.domain.entities.User;
+import com.softuni.Pathfinder.domain.enums.Level;
 import com.softuni.Pathfinder.domain.enums.RoleName;
 import com.softuni.Pathfinder.helpers.LoggedUser;
 import com.softuni.Pathfinder.repository.UserRepository;
@@ -39,7 +40,8 @@ public class UserService {
                 ? this.roleService.findAllRoles()
                 : Set.of(this.roleService.findRoleByName("USER")));
 
-        final User userToSave = this.modelMapper.map(userModel, User.class);
+        User userToSave = this.modelMapper.map(userModel, User.class).setLevel(Level.BEGINNER);
+
 
         this.modelMapper.map(this.userRepository.saveAndFlush(userToSave), UserModel.class);
     }

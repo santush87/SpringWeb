@@ -1,8 +1,6 @@
 package com.softuni.Pathfinder.domain.dtos.models;
 
-import com.softuni.Pathfinder.domain.entities.Role;
 import com.softuni.Pathfinder.domain.enums.Level;
-import jakarta.persistence.*;
 
 import java.util.Set;
 

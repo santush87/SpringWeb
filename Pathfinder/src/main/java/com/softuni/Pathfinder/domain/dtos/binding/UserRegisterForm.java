@@ -1,10 +1,22 @@
 package com.softuni.Pathfinder.domain.dtos.binding;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class UserRegisterForm {
+    @Size(min = 5, max = 20)
     private String username;
+    @Size(min = 5, max = 20)
+    private String fullName;
+    @Email
+    private String email;
+    @NotNull
+    private Integer age;
+    @Size(min = 5, max = 20)
     private String password;
-    private String firstName;
-    private String lastName;
+    @Size(min = 5, max = 20)
+    private String confirmPassword;
 
     public UserRegisterForm() {
     }
@@ -18,6 +30,33 @@ public class UserRegisterForm {
         return this;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserRegisterForm setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserRegisterForm setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public UserRegisterForm setAge(Integer age) {
+        this.age = age;
+        return this;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -27,21 +66,12 @@ public class UserRegisterForm {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public UserRegisterForm setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserRegisterForm setLastName(String lastName) {
-        this.lastName = lastName;
+    public UserRegisterForm setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
         return this;
     }
 }

@@ -11,31 +11,29 @@ import java.util.List;
 public class User extends BaseEntity{
 
     @Column
-    private String username; // –  username of the user.
+    private String username;
+    @Column
+    private String password;
 
     @Column
-    private String password; //– password of the user.
+    private String firstName;
 
     @Column
-    private String firstName; //–  first name of the user.
+    private String lastName;
 
     @Column
-    private String lastName; //–  last name of the user.
+    private Boolean isActive;
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<UserRole> role;
 
     @Column
-    private Boolean isActive; //– true OR false.
-
-    @ManyToMany(cascade = CascadeType.MERGE)
-    private List<UserRole> role; //–  user's role (User or Admin).
+    private String imageUrl;
 
     @Column
-    private String imageUrl;//– a url of user's picture.
+    private Date created;
 
     @Column
-    private Date created; // a date and time.
-
-    @Column
-    private Date modified;//– a date and time.
+    private Date modified;
 
     public String getUsername() {
         return username;
