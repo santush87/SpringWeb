@@ -4,25 +4,25 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "ships")
 public class Ship extends BaseEntity{
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private Long health;
-    @Column
+    @Column(nullable = false)
     private Long power;
-    @Column
+    @Column(nullable = false)
     private Date created;
     @ManyToOne
     private Category category;
