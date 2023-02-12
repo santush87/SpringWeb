@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService, DataBaseInitService {
     @Override
     public void loginUser(UserLoginFormDto userLogin) {
         UserModel loginCandidate =
-                this.modelMapper.map(this.userRepository.findByUsername(userLogin.getUsername()),
+                this.modelMapper.map(this.userRepository.findByUsername(userLogin.getUsername()).get(),
                         UserModel.class);
 
         this.loggedUser

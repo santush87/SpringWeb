@@ -27,7 +27,8 @@
                        min="2"
                        max="20"
                        class="form-control"
-                       placeholder="First name"/>
+                       placeholder="First name"
+                th:value="*{firstName}"/>
                 <p th:if="${#fields.hasErrors('firstName')}"
                         class="errors alert alert-danger">
                     First name is required.
@@ -44,7 +45,8 @@
                        min="2"
                        max="20"
                        class="form-control"
-                       placeholder="Last name"/>
+                       placeholder="Last name"
+                       th:value="*{lastName}"/>
                 <p th:if="${#fields.hasErrors('lastName')}"
                         class="errors alert alert-danger">
                     Last name is required.
@@ -63,7 +65,8 @@
                        min="2"
                        max="20"
                        class="form-control"
-                       placeholder="Username"/>
+                       placeholder="Username"
+                       th:value="*{username}"/>
                 <p th:if="${#fields.hasErrors('username')}"
                         class="errors alert alert-danger">
                     Username is required.
@@ -82,7 +85,8 @@
                        min="2"
                        max="20"
                        class="form-control"
-                       placeholder="Password"/>
+                       placeholder="Password"
+                       th:value="*{password}"/>
                 <p th:if="${#fields.hasErrors('password')}"
                         class="errors alert alert-danger">
                     Password is required.
@@ -99,7 +103,8 @@
                        min="2"
                        max="20"
                        class="form-control"
-                       placeholder="Confirm Password"/>
+                       placeholder="Confirm Password"
+                       th:value="*{confirmPassword}"/>
                 <p th:if="${#fields.hasErrors('confirmPassword')}"
                         class="errors alert alert-danger">
                     Password does not match!
