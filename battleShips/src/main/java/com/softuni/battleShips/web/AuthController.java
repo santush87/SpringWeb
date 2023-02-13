@@ -1,5 +1,6 @@
 package com.softuni.battleShips.web;
 
+import com.softuni.battleShips.domain.models.binding.UserLoginModel;
 import com.softuni.battleShips.domain.models.binding.UserRegisterModel;
 import com.softuni.battleShips.domain.services.AuthService;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String getRegister(Model model){
+    public String getRegister(){
         return "register";
     }
 
@@ -51,8 +52,30 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String postLogin(@Valid @ModelAttribute(name = "userLoginModel")
+                                UserLoginModel userLoginModel,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userLoginModel", userLoginModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginModel",
+                            bindingResult);
+
+            return "redirect:login";
+        }
+
+        return "redirect:login";
+    }
+
     @ModelAttribute(name = "userRegisterModel")
     public UserRegisterModel userRegisterModel(){
         return new UserRegisterModel();
+    }
+
+    @ModelAttribute(name = "userLoginModel")
+    public UserLoginModel userLoginModel(){
+        return new UserLoginModel();
     }
 }
