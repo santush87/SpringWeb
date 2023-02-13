@@ -13,7 +13,7 @@ public class LoggedUser {
     private String id;
 
     public boolean isEmpty(){
-        return id.equals(null);
+        return id == null;
     }
 
     public void clearUser(){

@@ -12,7 +12,7 @@ import lombok.*;
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity{
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(unique = true, nullable = false)
     private CategoryEnum name;
 
