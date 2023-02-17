@@ -1,4 +1,4 @@
-package com.softuni.battleShips.domain.validations.checkUserExistence;
+package com.softuni.battleShips.domain.validations.checkShipExistence;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -9,9 +9,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Constraint(validatedBy = UserLoginValidator.class)
-public @interface ValidateLoginForm {
+@Target(ElementType.FIELD)
+@Constraint(validatedBy = ShipExistenceValidator.class)
+public @interface ValidateExistenceOfShip {
 
     String message() default "Invalid user";
 
