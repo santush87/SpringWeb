@@ -5,7 +5,6 @@ import com.softuni.battleShips.domain.models.binding.UserRegisterModel;
 import com.softuni.battleShips.domain.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,7 +67,7 @@ public class AuthController {
 
         this.authService.loginUser(userLoginModel);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
 
     @ModelAttribute(name = "userRegisterModel")
