@@ -66,7 +66,9 @@ public class AuthController {
             return "redirect:login";
         }
 
-        return "redirect:login";
+        this.authService.loginUser(userLoginModel);
+
+        return "redirect:home";
     }
 
     @ModelAttribute(name = "userRegisterModel")
