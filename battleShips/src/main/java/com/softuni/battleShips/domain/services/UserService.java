@@ -24,4 +24,12 @@ public class UserService {
                         orElse(new User()),
                 UserModel.class);
     }
+
+    public UserModel findById(String id){
+        return this.modelMapper.map(
+                this.userRepository.
+                        findById(id).
+                        orElse(new User()),
+                UserModel.class);
+    }
 }

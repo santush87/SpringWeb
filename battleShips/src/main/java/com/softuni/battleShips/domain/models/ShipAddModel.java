@@ -1,8 +1,11 @@
 package com.softuni.battleShips.domain.models;
 
+import com.softuni.battleShips.domain.enums.CategoryEnum;
+import com.softuni.battleShips.domain.validations.checkShipExistence.ValidateExistenceOfShip;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
@@ -12,8 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ShipModel {
-
+public class ShipAddModel {
+    @NotNull
+    @Size(min = 2, max = 10)
+    @ValidateExistenceOfShip
     private String name;
 
     @NotNull
@@ -29,6 +34,7 @@ public class ShipModel {
     private Date created;
 
     @NotNull
-    private CategoryModel category;
-    private UserModel user;
+    private CategoryEnum category;
+
 }
+

@@ -33,4 +33,9 @@ public class CategoryService {
                     .map(categoryModel -> this.modelMapper.map(categoryModel, Category.class)).toList());
         }
     }
+
+    public CategoryModel findByName(CategoryEnum name){
+        return this.modelMapper.map(this.categoryRepository.findByName(name).orElseThrow(),
+                CategoryModel.class);
+    }
 }
