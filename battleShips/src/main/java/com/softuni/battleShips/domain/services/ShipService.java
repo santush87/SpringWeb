@@ -3,12 +3,14 @@ package com.softuni.battleShips.domain.services;
 import com.softuni.battleShips.domain.entities.Ship;
 import com.softuni.battleShips.domain.helpers.LoggedUser;
 import com.softuni.battleShips.domain.models.CategoryModel;
-import com.softuni.battleShips.domain.models.ShipAddModel;
 import com.softuni.battleShips.domain.models.ShipModel;
 import com.softuni.battleShips.domain.models.UserModel;
+import com.softuni.battleShips.domain.models.binding.ShipAddModel;
 import com.softuni.battleShips.domain.repositories.ShipRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ShipService {
@@ -26,12 +28,12 @@ public class ShipService {
         this.categoryService = categoryService;
     }
 
-    public boolean isThereShip(String shipName){
-        return this.shipRepository.findByName(shipName).isPresent();
+    public boolean isThereShip(String shipName) {
+        return this.shipRepository.findByName(shipName).isEmpty();
     }
 
-    public void addShip(ShipAddModel addModel){
-        UserModel theLoggedUser = this.userService.findById(loggedUser.getId());
+    public void addShip(ShipAddModel addModel) {
+        UserModel theLoggedUser = this.userService.findById(this.loggedUser.getId());
         CategoryModel categoryModel = this.categoryService.findByName(addModel.getCategory());
 
         Ship shipToSave = this.modelMapper.map(new ShipModel().builder()
@@ -44,5 +46,13 @@ public class ShipService {
                 .build(), Ship.class);
 
         this.shipRepository.saveAndFlush(shipToSave);
+    }
+
+    public List<ShipModel> findAllByUserId(String id) {
+        return this.shipRepository.findAllByUserId(id)
+                .orElseThrow()
+                .stream()
+                .map(ship -> this.modelMapper.map(ship, ShipModel.class))
+                .toList();
     }
 }

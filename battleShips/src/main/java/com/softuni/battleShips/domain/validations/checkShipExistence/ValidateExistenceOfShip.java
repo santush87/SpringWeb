@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = ShipExistenceValidator.class)
 public @interface ValidateExistenceOfShip {
 
-    String message() default "Invalid user";
+    String message() default "Ship name is taken!";
 
     Class<?>[] groups() default {};
 

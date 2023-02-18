@@ -51,6 +51,12 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String getLogout(){
+        this.authService.logout();
+        return "redirect:/";
+    }
+
     @PostMapping("/login")
     public String postLogin(@Valid @ModelAttribute(name = "userLoginModel")
                                 UserLoginModel userLoginModel,

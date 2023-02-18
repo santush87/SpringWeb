@@ -6,7 +6,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
+
 
 @Getter
 @Setter
@@ -28,4 +29,11 @@ public class Ship extends BaseEntity{
     private Category category;
     @ManyToOne
     private User user;
+
+    @Override
+    public String toString() {
+        String text = "| $s    | $s    | $s    |";
+
+        return String.format(text, name, health, power);
+    }
 }

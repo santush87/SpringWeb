@@ -13,5 +13,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Override
     Optional<User> findById(String id);
+
+    Optional<User> findByIdNot(String id);
 }
 

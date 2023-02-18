@@ -24,8 +24,6 @@ public class ShipModel {
     @Positive
     private Long power;
 
-    @NotNull
-    @PastOrPresent
     private Date created;
 
     @NotNull
