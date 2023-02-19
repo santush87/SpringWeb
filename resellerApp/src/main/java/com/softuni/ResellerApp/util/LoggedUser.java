@@ -1,4 +1,4 @@
-package com.softuni.battleShips.domain.helpers;
+package com.softuni.ResellerApp.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class LoggedUser {
     private String id;
 
     public boolean isEmpty(){
-        return id == null   ;
+        return id == null;
     }
 
     public void clearUser(){
