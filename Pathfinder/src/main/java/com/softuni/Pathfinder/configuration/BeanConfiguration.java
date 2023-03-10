@@ -48,7 +48,7 @@ public class BeanConfiguration {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
-                .failureForwardUrl("/auth/login?error=true")
+                .failureUrl("/auth/login?error=true")
                 // Logout
                 .and()
                 .logout()
