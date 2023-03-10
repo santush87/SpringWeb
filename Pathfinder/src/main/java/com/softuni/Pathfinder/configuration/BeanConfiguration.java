@@ -1,25 +1,36 @@
 package com.softuni.Pathfinder.configuration;
 
 import com.softuni.Pathfinder.helpers.LoggedUser;
+import com.softuni.Pathfinder.repository.UserRepository;
+import com.softuni.Pathfinder.service.PathfinderUserDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Configuration
 public class BeanConfiguration {
 
+    private final UserRepository userRepository;
+
+    public BeanConfiguration(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
     @Bean
     @SessionScope
-    public LoggedUser loggedUser(){
+    public LoggedUser loggedUser() {
         return new LoggedUser();
     }
 
@@ -35,8 +46,26 @@ public class BeanConfiguration {
                 // the URL-s below are available for anonymous
                 .requestMatchers("/auth/login", "/auth/register").anonymous()
                 // the URL-s below are available for authenticated persons - (logged in)
-                .requestMatchers("/auth/profile").authenticated();
+                .requestMatchers("/auth/profile").authenticated()
+                .and()
+                // Login
+                .formLogin()
+                .loginPage("/auth/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/auth/login?error=true");
 
         return httpSecurity.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new PathfinderUserDetailsService(userRepository);
     }
 }
