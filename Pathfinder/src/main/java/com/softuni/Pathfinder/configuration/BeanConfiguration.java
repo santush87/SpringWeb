@@ -48,7 +48,14 @@ public class BeanConfiguration {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
-                .failureForwardUrl("/auth/login?error=true");
+                .failureForwardUrl("/auth/login?error=true")
+                // Logout
+                .and()
+                .logout()
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .clearAuthentication(true);
 
         return httpSecurity.build();
     }
