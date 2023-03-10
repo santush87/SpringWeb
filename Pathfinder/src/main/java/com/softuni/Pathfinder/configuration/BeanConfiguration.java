@@ -17,12 +17,6 @@ import org.springframework.web.context.annotation.SessionScope;
 @Configuration
 public class BeanConfiguration {
 
-    private final UserRepository userRepository;
-
-    public BeanConfiguration(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
@@ -62,10 +56,5 @@ public class BeanConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return new PathfinderUserDetailsService(userRepository);
     }
 }
