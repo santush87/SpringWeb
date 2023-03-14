@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.domain.dtos.model;
 
-import javax.persistence.MappedSuperclass;
+
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntityDto {

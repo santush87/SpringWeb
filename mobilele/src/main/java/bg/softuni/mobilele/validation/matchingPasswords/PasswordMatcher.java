@@ -1,10 +1,10 @@
 package bg.softuni.mobilele.validation.matchingPasswords;
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 public class PasswordMatcher implements ConstraintValidator<PasswordMatch, Object> {
     private String password;

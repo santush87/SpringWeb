@@ -1,11 +1,12 @@
 package bg.softuni.mobilele.domain.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
 @Table(name = "brands")
-public class Brand extends BaseEntity {
+public class BrandEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -20,7 +21,7 @@ public class Brand extends BaseEntity {
         return name;
     }
 
-    public Brand setName(String name) {
+    public BrandEntity setName(String name) {
         this.name = name;
         return this;
     }
@@ -29,7 +30,7 @@ public class Brand extends BaseEntity {
         return created;
     }
 
-    public Brand setCreated(Date created) {
+    public BrandEntity setCreated(Date created) {
         this.created = created;
         return this;
     }
@@ -38,7 +39,7 @@ public class Brand extends BaseEntity {
         return modified;
     }
 
-    public Brand setModified(Date modified) {
+    public BrandEntity setModified(Date modified) {
         this.modified = modified;
         return this;
     }

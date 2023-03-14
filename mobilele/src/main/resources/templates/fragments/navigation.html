@@ -1,5 +1,5 @@
 <nav th:fragment="navigation" class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" href="/"><img alt="car picture" src="/img/car.png" class="logo"></a>
+  <a class="navbar-brandEntity" href="/"><img alt="car picture" src="/img/car.png" class="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
 
       <li class="nav-item">
         <div class="form-inline my-2 my-lg-0 border px-3">
-          <div class="logged-user"
+          <div class="logged-userEntity"
                text="Welcome, Gosho"></div>
           <a class="nav-link" th:href="@{/users/logout}">Logout</a>
         </div>

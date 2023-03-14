@@ -1,13 +1,12 @@
 package bg.softuni.mobilele.domain.entities;
 
 import bg.softuni.mobilele.domain.enums.ModelCategoryEnum;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "models")
-public class Model extends BaseEntity{
+public class ModelEntity extends BaseEntity{
 
     @Column(nullable = false)
     private String name;
@@ -31,13 +30,13 @@ public class Model extends BaseEntity{
     private Date modified;
 
     @ManyToOne
-    private Brand brand;
+    private BrandEntity brandEntity;
 
     public String getName() {
         return name;
     }
 
-    public Model setName(String name) {
+    public ModelEntity setName(String name) {
         this.name = name;
         return this;
     }
@@ -46,7 +45,7 @@ public class Model extends BaseEntity{
         return category;
     }
 
-    public Model setCategory(ModelCategoryEnum category) {
+    public ModelEntity setCategory(ModelCategoryEnum category) {
         this.category = category;
         return this;
     }
@@ -55,7 +54,7 @@ public class Model extends BaseEntity{
         return imageUrl;
     }
 
-    public Model setImageUrl(String imageUrl) {
+    public ModelEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -64,7 +63,7 @@ public class Model extends BaseEntity{
         return startYear;
     }
 
-    public Model setStartYear(Integer startYear) {
+    public ModelEntity setStartYear(Integer startYear) {
         this.startYear = startYear;
         return this;
     }
@@ -73,7 +72,7 @@ public class Model extends BaseEntity{
         return endYear;
     }
 
-    public Model setEndYear(Integer endYear) {
+    public ModelEntity setEndYear(Integer endYear) {
         this.endYear = endYear;
         return this;
     }
@@ -82,7 +81,7 @@ public class Model extends BaseEntity{
         return created;
     }
 
-    public Model setCreated(Date created) {
+    public ModelEntity setCreated(Date created) {
         this.created = created;
         return this;
     }
@@ -91,17 +90,17 @@ public class Model extends BaseEntity{
         return modified;
     }
 
-    public Model setModified(Date modified) {
+    public ModelEntity setModified(Date modified) {
         this.modified = modified;
         return this;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public BrandEntity getBrand() {
+        return brandEntity;
     }
 
-    public Model setBrand(Brand brand) {
-        this.brand = brand;
+    public ModelEntity setBrand(BrandEntity brandEntity) {
+        this.brandEntity = brandEntity;
         return this;
     }
 }

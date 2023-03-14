@@ -2,7 +2,7 @@ package bg.softuni.mobilele.services.role;
 
 import bg.softuni.mobilele.domain.dtos.model.UserRoleModel;
 import bg.softuni.mobilele.domain.dtos.view.UserRoleViewDto;
-import bg.softuni.mobilele.domain.entities.UserRole;
+import bg.softuni.mobilele.domain.entities.UserRoleEntity;
 import bg.softuni.mobilele.domain.enums.RoleEnum;
 import bg.softuni.mobilele.repositories.UserRoleRepository;
 import org.modelmapper.ModelMapper;
@@ -31,10 +31,10 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public void dbInit() {
         if (!isDbInit()) {
-            List<UserRole> roles = new ArrayList<>();
+            List<UserRoleEntity> roles = new ArrayList<>();
 
-            roles.add(new UserRole().setRole(RoleEnum.USER));
-            roles.add(new UserRole().setRole(RoleEnum.ADMIN));
+            roles.add(new UserRoleEntity().setRole(RoleEnum.USER));
+            roles.add(new UserRoleEntity().setRole(RoleEnum.ADMIN));
 
             this.roleRepository.saveAllAndFlush(roles);
         }

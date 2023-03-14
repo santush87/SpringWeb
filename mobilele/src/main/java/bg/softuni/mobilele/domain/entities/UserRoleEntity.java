@@ -1,12 +1,15 @@
 package bg.softuni.mobilele.domain.entities;
 
 import bg.softuni.mobilele.domain.enums.RoleEnum;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
-import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class UserRole extends BaseEntity{
+public class UserRoleEntity extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
@@ -15,7 +18,7 @@ public class UserRole extends BaseEntity{
         return role;
     }
 
-    public UserRole setRole(RoleEnum role) {
+    public UserRoleEntity setRole(RoleEnum role) {
         this.role = role;
         return this;
     }

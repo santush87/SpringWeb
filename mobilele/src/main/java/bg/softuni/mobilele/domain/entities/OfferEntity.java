@@ -2,13 +2,12 @@ package bg.softuni.mobilele.domain.entities;
 
 import bg.softuni.mobilele.domain.enums.EngineEnum;
 import bg.softuni.mobilele.domain.enums.TransmissionEnum;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "offers")
-public class Offer extends BaseEntity{
+public class OfferEntity extends BaseEntity{
 
 //    @Id
 //    @GeneratedValue(generator = "UUID")
@@ -42,16 +41,16 @@ public class Offer extends BaseEntity{
     private int year;
 
     @ManyToOne
-    private Model model;
+    private ModelEntity modelEntity;
 
     @ManyToOne
-    private User seller;
+    private UserEntity seller;
 
     public String getDescription() {
         return description;
     }
 
-    public Offer setDescription(String description) {
+    public OfferEntity setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -60,7 +59,7 @@ public class Offer extends BaseEntity{
         return engine;
     }
 
-    public Offer setEngine(EngineEnum engine) {
+    public OfferEntity setEngine(EngineEnum engine) {
         this.engine = engine;
         return this;
     }
@@ -69,7 +68,7 @@ public class Offer extends BaseEntity{
         return imageUrl;
     }
 
-    public Offer setImageUrl(String imageUrl) {
+    public OfferEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -78,7 +77,7 @@ public class Offer extends BaseEntity{
         return mileage;
     }
 
-    public Offer setMileage(int mileage) {
+    public OfferEntity setMileage(int mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -87,7 +86,7 @@ public class Offer extends BaseEntity{
         return price;
     }
 
-    public Offer setPrice(BigDecimal price) {
+    public OfferEntity setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -96,7 +95,7 @@ public class Offer extends BaseEntity{
         return transmission;
     }
 
-    public Offer setTransmission(TransmissionEnum transmission) {
+    public OfferEntity setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -105,25 +104,25 @@ public class Offer extends BaseEntity{
         return year;
     }
 
-    public Offer setYear(int year) {
+    public OfferEntity setYear(int year) {
         this.year = year;
         return this;
     }
 
-    public Model getModel() {
-        return model;
+    public ModelEntity getModel() {
+        return modelEntity;
     }
 
-    public Offer setModel(Model model) {
-        this.model = model;
+    public OfferEntity setModel(ModelEntity modelEntity) {
+        this.modelEntity = modelEntity;
         return this;
     }
 
-    public User getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public Offer setSeller(User seller) {
+    public OfferEntity setSeller(UserEntity seller) {
         this.seller = seller;
         return this;
     }
