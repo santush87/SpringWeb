@@ -7,6 +7,7 @@ import bg.softuni.mobilele.domain.enums.RoleEnum;
 import bg.softuni.mobilele.repositories.UserRoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+@Order(0)
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
 
@@ -42,7 +44,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public boolean isDbInit() {
-        return this.roleRepository.count() > 0;
+        return this.roleRepository.count() == 0;
     }
 
     public List<UserRoleViewDto> getAll() {
