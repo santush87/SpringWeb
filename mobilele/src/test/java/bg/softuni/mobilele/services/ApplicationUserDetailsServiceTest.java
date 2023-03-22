@@ -43,7 +43,7 @@ public class ApplicationUserDetailsServiceTest {
 
     @Test
     void testUserFound() {
-
+        /* ARRANGE */
         UserRoleEntity testAdminRole = new UserRoleEntity().setRole(RoleEnum.ADMIN);
         UserRoleEntity testUserRole = new UserRoleEntity().setRole(RoleEnum.USER);
 
@@ -54,11 +54,14 @@ public class ApplicationUserDetailsServiceTest {
 
         when(mocKUserRepository.findByUsername(EXISTING_USERNAME))
                 .thenReturn(Optional.of(testUserEntity));
+        /* END OF ARRANGE */
 
+        /* ACT */
         UserDetails adnimDetails =
                 toTest.loadUserByUsername(EXISTING_USERNAME);
+        /* END OF ACT */
 
-        //ASSERT
+        /* ASSERT */
         Assertions.assertNotNull(adnimDetails);
         Assertions.assertEquals(EXISTING_USERNAME, adnimDetails.getUsername());
         Assertions.assertEquals(testUserEntity.getPassword(), adnimDetails.getPassword());
@@ -67,6 +70,7 @@ public class ApplicationUserDetailsServiceTest {
 
         assertRole(adnimDetails.getAuthorities(), "ROLE_ADMIN");
         assertRole(adnimDetails.getAuthorities(), "ROLE_USER");
+        /* END OF ASSERT */
     }
 
     private void assertRole(Collection<? extends GrantedAuthority> authorities,
