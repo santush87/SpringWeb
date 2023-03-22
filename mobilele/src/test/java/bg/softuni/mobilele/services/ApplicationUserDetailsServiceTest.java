@@ -22,9 +22,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ApplicationUserDetailsServiceTest {
 
-    private final String EXISTING_USERNAME = "Martin";
-    private final String NOT_EXISTING_USERNAME = "Pesho";
-    private final String PASSWORD = "toptop";
+    private static final String EXISTING_USERNAME = "Martin";
+    private static final String NOT_EXISTING_USERNAME = "Pesho";
+    private static final String PASSWORD = "toptop";
 
     private ApplicationUserDetailsService toTest;
 
@@ -66,8 +66,6 @@ public class ApplicationUserDetailsServiceTest {
     @Test
     void testUserNotFound() {
         assertThrows(UsernameNotFoundException.class,
-                () -> {
-                    toTest.loadUserByUsername(NOT_EXISTING_USERNAME);
-                });
+                () -> toTest.loadUserByUsername(NOT_EXISTING_USERNAME));
     }
 }
