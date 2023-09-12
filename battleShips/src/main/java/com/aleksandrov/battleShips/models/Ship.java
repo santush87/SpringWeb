@@ -33,7 +33,7 @@ public class Ship {
     private LocalDate created;
 
     @ManyToOne //many ships to one user
-    private User owner;
+    private User user;
 
     @ManyToOne //many ships to one category
     private Category category;
