@@ -2,12 +2,14 @@ package com.aleksandrov.battleShips.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @Getter
+@Setter
 public class User {
 
     @Id
@@ -15,6 +17,7 @@ public class User {
     private long id;
 
     @Column(unique = true, nullable = false)
+    @NotBlank
     private String username;
 
     @Column(name = "full_name", nullable = false)

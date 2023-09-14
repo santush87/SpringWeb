@@ -1,6 +1,7 @@
 package com.aleksandrov.battleShips.controllers;
 
 import com.aleksandrov.battleShips.models.dtos.UserRegistrationDto;
+import com.aleksandrov.battleShips.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AuthController {
+
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @ModelAttribute("registrationDto")
     public UserRegistrationDto initRegistrationDTO() {
@@ -27,15 +34,17 @@ public class AuthController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !this.authService.register(registrationDto)) {
             redirectAttributes.addFlashAttribute(
-                    "registrationDto", registrationDto);
+                    "registrationDto",
+                    registrationDto);
             redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.registrationDto", bindingResult);
+                    "org.springframework.validation.BindingResult.registrationDto",
+                    bindingResult);
 
-            return "redirect:/register";
+            return "redirect:register";
         }
 
-        return "redirect:/login";
+        return "redirect:login";
     }
 }
