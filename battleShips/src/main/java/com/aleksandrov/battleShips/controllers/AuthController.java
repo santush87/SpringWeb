@@ -1,5 +1,6 @@
 package com.aleksandrov.battleShips.controllers;
 
+import com.aleksandrov.battleShips.models.dtos.UserLoginDto;
 import com.aleksandrov.battleShips.models.dtos.UserRegistrationDto;
 import com.aleksandrov.battleShips.services.AuthService;
 import jakarta.validation.Valid;
@@ -24,6 +25,7 @@ public class AuthController {
         return new UserRegistrationDto();
     }
 
+
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -46,5 +48,40 @@ public class AuthController {
         }
 
         return "redirect:login";
+    }
+
+    @ModelAttribute("loginDto")
+    public UserLoginDto initLoginDTO() {
+        return new UserLoginDto();
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid UserLoginDto loginDto,
+                        BindingResult bindingResult,
+                        RedirectAttributes redirectAttributes) {
+        System.out.println(loginDto);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("loginDto", loginDto);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.loginDto",
+                    bindingResult);
+
+            System.out.println("With errors: "+loginDto);
+
+            return "redirect:/login";
+        }
+
+        if (!this.authService.login(loginDto)){
+            redirectAttributes.addFlashAttribute("loginDto", loginDto);
+            redirectAttributes.addFlashAttribute("badCredentials", true);
+
+            return "redirect:/login";
+        }
+        return "redirect:/home";
     }
 }
