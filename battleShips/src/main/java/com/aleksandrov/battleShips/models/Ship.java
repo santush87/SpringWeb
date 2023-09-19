@@ -32,7 +32,7 @@ public class Ship {
 
     private LocalDate created;
 
-    @ManyToOne //many ships to one user
+    @ManyToOne(fetch = FetchType.LAZY) //many ships to one user
     private User user;
 
     @ManyToOne //many ships to one category

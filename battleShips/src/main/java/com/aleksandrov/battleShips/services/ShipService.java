@@ -5,6 +5,7 @@ import com.aleksandrov.battleShips.models.Category;
 import com.aleksandrov.battleShips.models.Ship;
 import com.aleksandrov.battleShips.models.User;
 import com.aleksandrov.battleShips.models.dtos.CreateShipDto;
+import com.aleksandrov.battleShips.models.dtos.ShipDto;
 import com.aleksandrov.battleShips.repositories.CategoryRepository;
 import com.aleksandrov.battleShips.repositories.ShipRepository;
 import com.aleksandrov.battleShips.repositories.UserRepository;
@@ -12,7 +13,9 @@ import com.aleksandrov.battleShips.session.UserSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ShipService {
@@ -59,5 +62,26 @@ public class ShipService {
         this.shipRepository.save(shipToSave);
 
         return true;
+    }
+
+    public List<ShipDto> getShipsOwnedBy(Long ownerId) {
+        return this.shipRepository.findByUserId(ownerId)
+                .stream()
+                .map(ShipDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ShipDto> getShipsNotOwnedBy(Long ownerId) {
+        return this.shipRepository.findByUserIdNot(ownerId)
+                .stream()
+                .map(ShipDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ShipDto> getAllSorted() {
+        return this.shipRepository.findAllByOrderByNameAscHealthAscPowerAsc()
+                .stream()
+                .map(ShipDto::new)
+                .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,5 @@
 package com.aleksandrov.battleShips.models.dtos;
 
-import com.aleksandrov.battleShips.models.Category;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
