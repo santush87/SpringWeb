@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top  rounded">
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <th:block th:if="${@userSession.id == null}">
+      <th:block th:if="${@userSession.id == 0}">
         <li class="nav-item active">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -12,7 +12,7 @@
           <a class="nav-link" href="/register">Register</a>
         </li>
       </th:block>
-      <th:block th:if="${@userSession.id}">
+      <th:block th:if="${@userSession.id > 0}">
         <li class="nav-item active">
           <a class="nav-link" href="/home">Home</a>
         </li>
