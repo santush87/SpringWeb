@@ -29,6 +29,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String loggedOutIndex(){
+
         if (this.authService.isLoggedIn()){
             return "redirect:/home";
         }
@@ -38,6 +39,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String loggedInIndex(Model model){
+
         if (!this.authService.isLoggedIn()){
             return "redirect:/";
         }
