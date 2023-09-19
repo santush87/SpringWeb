@@ -2,6 +2,7 @@ package com.aleksandrov.battleShips.controllers;
 
 import com.aleksandrov.battleShips.models.dtos.ShipDto;
 import com.aleksandrov.battleShips.models.dtos.StartBattleDto;
+import com.aleksandrov.battleShips.services.AuthService;
 import com.aleksandrov.battleShips.services.ShipService;
 import com.aleksandrov.battleShips.session.UserSession;
 import org.springframework.stereotype.Controller;
@@ -15,16 +16,16 @@ import java.util.List;
 public class HomeController {
 
     private final ShipService shipService;
-    private final UserSession userSession;
+    private final AuthService authService;
 
     @ModelAttribute("startBattleDto")
     public StartBattleDto initStartBattleDto(){
         return new StartBattleDto();
     }
 
-    public HomeController(ShipService shipService, UserSession userSession) {
+    public HomeController(ShipService shipService, AuthService authService) {
         this.shipService = shipService;
-        this.userSession = userSession;
+        this.authService = authService;
     }
 
     @GetMapping("/")
@@ -34,7 +35,12 @@ public class HomeController {
 
     @GetMapping("/home")
     public String loggedInIndex(Model model){
-        Long userId = this.userSession.getId();
+        if (!this.authService.isLoggedIn()){
+            return "redirect:/";
+        }
+
+        long userId = this.authService.getLoggedUserId();
+
         List<ShipDto> ownShips = this.shipService.getShipsOwnedBy(userId);
         List<ShipDto> enemyShips = this.shipService.getShipsNotOwnedBy(userId);
         List<ShipDto> sortedShips = this.shipService.getAllSorted();

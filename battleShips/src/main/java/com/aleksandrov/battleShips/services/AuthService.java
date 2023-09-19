@@ -30,13 +30,13 @@ public class AuthService {
 
         //Check for duplicate email
         Optional<User> byEmail = this.userRepository.findByEmail(registrationDto.getEmail());
-        if (byEmail.isPresent()){
+        if (byEmail.isPresent()) {
             return false;
         }
 
         //Check for duplicate username
         Optional<User> byUsername = this.userRepository.findByUsername(registrationDto.getUsername());
-        if (byUsername.isPresent()){
+        if (byUsername.isPresent()) {
             return false;
         }
 
@@ -50,7 +50,7 @@ public class AuthService {
         Optional<User> userToLogin = this.userRepository
                 .findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword());
 
-        if (userToLogin.isEmpty()){
+        if (userToLogin.isEmpty()) {
             return false;
         }
 
@@ -60,5 +60,13 @@ public class AuthService {
 
     public void logout() {
         this.userSession.logout();
+    }
+
+    public boolean isLoggedIn() {
+        return this.userSession.getId() == null;
+    }
+
+    public long getLoggedUserId() {
+        return this.userSession.getId();
     }
 }
