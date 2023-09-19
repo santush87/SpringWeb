@@ -4,7 +4,6 @@ import com.aleksandrov.battleShips.models.dtos.ShipDto;
 import com.aleksandrov.battleShips.models.dtos.StartBattleDto;
 import com.aleksandrov.battleShips.services.AuthService;
 import com.aleksandrov.battleShips.services.ShipService;
-import com.aleksandrov.battleShips.session.UserSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +29,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String loggedOutIndex(){
+        if (this.authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
         return "index";
     }
 
