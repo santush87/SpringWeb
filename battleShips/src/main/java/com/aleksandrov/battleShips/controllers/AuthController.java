@@ -63,7 +63,6 @@ public class AuthController {
     public String login(@Valid UserLoginDto loginDto,
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes) {
-        System.out.println(loginDto);
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("loginDto", loginDto);
