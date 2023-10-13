@@ -1,5 +1,7 @@
 package com.resellerapp.model.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -10,6 +12,7 @@ public class BaseEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
+    @Type(type="uuid-char")
     private UUID id;
 
     public UUID getId() {
