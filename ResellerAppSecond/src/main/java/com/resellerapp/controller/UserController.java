@@ -6,7 +6,6 @@ import com.resellerapp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,8 +28,11 @@ public class UserController {
     }
     @PostMapping("/login")
     public ModelAndView login(@Valid UserLoginDto userLoginDto){
+        boolean isLogged = this.userService.login(userLoginDto);
 
-        return new ModelAndView("login");
+        String view = isLogged ? "redirect:/home" : "login";
+
+        return new ModelAndView(view);
     }
 
     @GetMapping("/register")
