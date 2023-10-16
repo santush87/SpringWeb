@@ -68,7 +68,7 @@
             <div class="col-6 mt-1 mb-1">
                 <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">All Other Offers</h3>
                 <h6 class="mySticky bg-gray text-dark  mb-0 mt-0"
-                th:text="offerHomeDto.totalOffers">{totalOffers}</h6>
+                th:text="${offerHomeDto.getTotalOtherOffers} + ' Offers'">{totalOffers}</h6>
                 <div class="bg-dark rounded m-auto"
                      style="height: 67vh; overflow: auto">
                     <div>
@@ -83,7 +83,7 @@
                                                 <a th:text="${otherOffer.sellerUsername}">{sellersUsername} sells:</a>
                                             </td>
                                             <td>
-                                                <a th:text="${otherOffer.offerDescription}">{offerDescription}</a>
+                                                <a th:text="${otherOffer.description}">{offerDescription}</a>
                                             </td>
                                         </tr>
                                     </table>
@@ -92,16 +92,19 @@
                                     <table>
                                         <tr>
                                             <td style="width: 40%">
-                                                <a th:text="${otherOffer.offerCondition}">Condition: {offerCondition}</a>
+                                                <a th:text="${otherOffer.condition}">Condition: {offerCondition}</a>
                                             </td>
                                             <td class="text-primary" style="width: 40%">
-                                                <a th:text="${otherOffer.offerPrice}">Price: {offerPrice} €</a>
+                                                <a th:text="${otherOffer.price}">Price: {offerPrice} €</a>
                                             </td>
                                             <td>
-                                                <a class="ml-3 text-danger"
-                                                   th:href="@{/offers/buy/${otherOffer.offerId}}">
-                                                    <img src="/img/buy.png"
-                                                         height="35px"></a>
+                                                <form th:action="@{/offers/buy/{id}(id=${otherOffer.id})}"
+                                                      th:method="post">
+                                                    <button type="submit"
+                                                            class="ml-3 text-danger">
+                                                        <img src="/img/buy.png"
+                                                             height="35px"></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     </table>

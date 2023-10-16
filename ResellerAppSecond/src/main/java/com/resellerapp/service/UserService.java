@@ -62,4 +62,8 @@ public class UserService {
 
     }
 
+    public void logout() {
+        this.loggedUser.setUsername(null);
+        this.loggedUser.setLogged(false);
+    }
 }

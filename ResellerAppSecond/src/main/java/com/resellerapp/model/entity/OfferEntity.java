@@ -1,10 +1,13 @@
 package com.resellerapp.model.entity;
 
+import com.resellerapp.model.dtos.OfferCreateDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Entity
 @Table(name = "offers")
@@ -28,6 +31,17 @@ public class OfferEntity extends BaseEntity {
 
     @ManyToOne
     private UserEntity boughtBy;
+
+    public OfferEntity() {
+    }
+
+
+    public OfferEntity(OfferCreateDto offerCreateDto, ConditionEntity condition, UserEntity createdBy) {
+        this.description = offerCreateDto.getDescription();
+        this.price = offerCreateDto.getPrice();
+        this.condition = condition;
+        this.createdBy = createdBy;
+    }
 
     public String getDescription() {
         return description;
