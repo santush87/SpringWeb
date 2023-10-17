@@ -88,18 +88,22 @@ public class TaskService {
         UserEntity user = optUser.get();
 
         List<TaskEntity> assigneeTasks = this.taskRepository.findByAssignee(user);
-        List<TaskDto> assigneeTasksDto = new ArrayList<>();
-
-        for (TaskEntity task : assigneeTasks) {
-            assigneeTasksDto.add(this.modelMapper.map(task, TaskDto.class));
-        }
+        List<TaskDto> assigneeTasksDto = converterToDto(assigneeTasks, modelMapper);
 
         List<TaskEntity> availableTasks = this.taskRepository.findByAssigneeNot(user);
-        List<TaskDto> availableTasksDto = new ArrayList<>();
-        for (TaskEntity task : availableTasks) {
-            availableTasksDto.add(this.modelMapper.map(task, TaskDto.class));
-        }
+        List<TaskDto> availableTasksDto = converterToDto(availableTasks, modelMapper);
 
         return new TaskHomeViewDto(assigneeTasksDto, availableTasksDto);
+    }
+
+    private static List<TaskDto> converterToDto(List<TaskEntity> tasks, ModelMapper modelMapper) {
+        List<TaskDto> assigneeTasksDto = new ArrayList<>();
+
+        for (TaskEntity task : tasks) {
+            TaskDto taskDto = modelMapper.map(task, TaskDto.class);
+            taskDto.setPriority(task.getPriority().getName());
+            assigneeTasksDto.add(taskDto);
+        }
+        return assigneeTasksDto;
     }
 }

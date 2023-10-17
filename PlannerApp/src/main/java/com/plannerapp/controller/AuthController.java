@@ -3,12 +3,14 @@ package com.plannerapp.controller;
 import com.plannerapp.model.dtos.UserLoginDto;
 import com.plannerapp.model.dtos.UserRegisterDto;
 import com.plannerapp.service.UserService;
+import com.plannerapp.util.LoggedUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -18,6 +20,7 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final UserService userService;
+    private final LoggedUser loggedUser;
 
     @ModelAttribute("userRegisterDto")
     public UserRegisterDto initRegisterForm() {
@@ -26,6 +29,9 @@ public class AuthController {
 
     @GetMapping("/register")
     public String register() {
+        if (loggedUser.isLogged()) {
+            return"redirect:/home";
+        }
         return "register";
     }
 
@@ -33,6 +39,9 @@ public class AuthController {
     public String doRegister(@Valid UserRegisterDto userRegisterDto,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes) {
+        if (loggedUser.isLogged()) {
+            return"redirect:/home";
+        }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegisterDto", userRegisterDto);
@@ -58,6 +67,9 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
+        if (loggedUser.isLogged()) {
+            return"redirect:/home";
+        }
         return "login";
     }
 
@@ -65,6 +77,9 @@ public class AuthController {
     public String doLogin(@Valid UserLoginDto userLoginDto,
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
+        if (loggedUser.isLogged()) {
+            return"redirect:/home";
+        }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
