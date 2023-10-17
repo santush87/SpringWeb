@@ -29,7 +29,7 @@ public class UserEntity extends BaseEntity {
     @Email
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "assignee")
     private Set<TaskEntity> assignedTasks;
 
     public UserEntity() {

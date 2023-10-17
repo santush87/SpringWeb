@@ -22,7 +22,7 @@ public class AppConfig {
             @Override
             public LocalDate convert(MappingContext<String, LocalDate> context) {
                 return LocalDate.parse(context.getSource(),
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             }
         });
         return mapper;

@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "priorities")
@@ -23,13 +25,13 @@ public class PriorityEntity extends BaseEntity {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany
-    private List<TaskEntity> tasks;
+    @OneToMany(mappedBy = "priority")
+    private Set<TaskEntity> tasks;
 
     public PriorityEntity(PriorityName name) {
         this.name = name;
         setDescription(name);
-        this.tasks = new ArrayList<>();
+        this.tasks = new HashSet<>();
     }
 
 
