@@ -20,54 +20,67 @@ public class AuthController {
     private final UserService userService;
 
     @ModelAttribute("userRegisterDto")
-    public UserRegisterDto initRegisterForm(){
+    public UserRegisterDto initRegisterForm() {
         return new UserRegisterDto();
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "register";
     }
 
     @PostMapping("/register")
     public String doRegister(@Valid UserRegisterDto userRegisterDto,
-                           BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes){
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegisterDto", userRegisterDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDto", bindingResult);
 
             return "redirect:register";
         }
-
-        this.userService.register(userRegisterDto);
-
-        return "redirect:home";
+        try {
+            boolean registered = this.userService.register(userRegisterDto);
+            if (registered) {
+                return "redirect:home";
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return "redirect:register";
     }
 
     @ModelAttribute("userLoginDto")
-    public UserLoginDto initLoginForm(){
+    public UserLoginDto initLoginForm() {
         return new UserLoginDto();
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @PostMapping("/login")
     public String doLogin(@Valid UserLoginDto userLoginDto,
                           BindingResult bindingResult,
-                          RedirectAttributes redirectAttributes){
+                          RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginDto", bindingResult);
 
             return "redirect:login";
         }
-        this.userService.login(userLoginDto);
-        return "redirect:/home";
+
+        try {
+            boolean loggedIn = this.userService.login(userLoginDto);
+            if (loggedIn) {
+                return "redirect:home";
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+            return "redirect:login";
     }
 }

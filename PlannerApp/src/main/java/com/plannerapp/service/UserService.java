@@ -27,11 +27,11 @@ public class UserService {
                 this.userRepository.findByUsername(userRegisterDto.getUsername());
 
         if (optUser.isPresent()){
-            return false;
+            throw new IllegalArgumentException("Email or username already exists! Try another one!");
         }
 
         if (!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())){
-            return false;
+            throw new IllegalArgumentException("Password and Confirm password must match!");
         }
 
         UserEntity userToSave = this.modelMapper.map(userRegisterDto, UserEntity.class);
@@ -51,6 +51,8 @@ public class UserService {
                 this.loggedUser.setUsername(userLoginDto.getUsername());
                 this.loggedUser.setLogged(true);
                 return true;
+            } else {
+                throw new IllegalArgumentException("Wrong username or password");
             }
         }
         return false;
