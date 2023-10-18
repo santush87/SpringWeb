@@ -38,6 +38,32 @@ public class AuthController {
         return new ModelAndView("login");
     }
 
+    @PostMapping("/login")
+    public ModelAndView doLogin(@Valid UserLoginDto userLoginDto,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes){
+        if (loggedUser.isLogged()) {
+            return new ModelAndView("redirect:/home");
+        }
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginDto", bindingResult);
+
+            return new ModelAndView("redirect:login");
+        }
+
+        try {
+            boolean loggedIn = this.userService.login(userLoginDto);
+            if (loggedIn) {
+                return new ModelAndView("redirect:home");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return new ModelAndView("login");
+    }
+
     /***    REGISTER   ***/
 
     /***    MODEL ATTRIBUTE   ***/
