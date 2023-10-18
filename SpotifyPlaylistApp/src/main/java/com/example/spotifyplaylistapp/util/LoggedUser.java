@@ -15,4 +15,13 @@ public class LoggedUser {
 
     private boolean isLogged;
 
+    public void login(String username) {
+        this.username = username;
+        this.isLogged = true;
+    }
+
+    public void logout() {
+        this.username = null;
+        this.isLogged = false;
+    }
 }
