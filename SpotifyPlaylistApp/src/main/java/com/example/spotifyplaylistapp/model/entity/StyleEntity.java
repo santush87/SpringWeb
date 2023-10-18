@@ -19,13 +19,16 @@ public class StyleEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private StyleName styleName;
 
-    @Column
-    private String description;
-
     @OneToMany(mappedBy = "style")
     private Set<SongEntity> songs;
 
     public StyleEntity() {
         this.songs = new HashSet<>();
     }
+
+    public StyleEntity(StyleName styleName) {
+        this.styleName = styleName;
+        this.songs = new HashSet<>();
+    }
+
 }
